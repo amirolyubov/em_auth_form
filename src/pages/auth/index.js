@@ -1,7 +1,6 @@
 import Auth from "./Auth";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
-import ChangePassword from "./ChangePassword";
-import ForgotPassword from "./ForgotPassword";
+import ResetPassword from "./ResetPassword";
 
-export { Auth, SignIn, SignUp, ChangePassword, ForgotPassword };
+export { Auth, SignIn, SignUp, ResetPassword };

@@ -1,13 +1,50 @@
 import React from "react";
-import { Div, Text } from "../../components/basic";
-import { Navigate, Outlet } from "react-router-dom";
+import { Div, Text, Link } from "../../components/basic";
+import { Outlet, useLocation } from "react-router-dom";
+import styled from "@emotion/styled";
+
+const FormTab = styled(Link)`
+    width: 50%;
+    text-decoration: none;
+    color: inherit;
+    background-color: grey;
+    padding: 10px 15px;
+    transition: 0.3s;
+    transition-property: transform;
+    ${({ active }) =>
+        active &&
+        `
+        background-color: white;
+        color: black;
+        cursor: default;
+
+    `};
+`;
 
 function Auth() {
-    return (
-        <Div>
-            <Text>This is auth page!</Text>
+    const { pathname } = useLocation();
 
-            <Outlet />
+    return (
+        <Div
+            display="flex"
+            alignItems="flex-start"
+            justifyContent="center"
+            height="100%"
+            bg="black"
+        >
+            <Div bg="white" width="300px" mt="10%">
+                <Div display="flex" justifyContent="space-between">
+                    <FormTab active={pathname === "/auth/signin"} to="signin">
+                        <Text>signin</Text>
+                    </FormTab>
+                    <FormTab active={pathname === "/auth/signup"} to="signup">
+                        <Text>signup</Text>
+                    </FormTab>
+                </Div>
+                <Div p="20px 15px 30px">
+                    <Outlet />
+                </Div>
+            </Div>
         </Div>
     );
 }

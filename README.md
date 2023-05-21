@@ -1,19 +1,20 @@
 # auth form для evil martians
 
 ## pages
-* [ ] sign in 
+* [x] sign in 
 * [ ] sign up 
 * [ ] forgot password 
 * [ ] change password 
+* [ ] 404 
 ## features
-* [ ] base components 
+* [x] base components 
 * [ ] error handling 
 * [ ] animations 
 * [ ] keybinds 
-* [ ] input names for autocomplete 
+* [x] input names for autocomplete 
 * [ ] security request design 
 * [ ] responsive design 
-* [ ] email validation with regexp 
+* [ ] user validation with regexp 
 * [ ] token validation 
 * [ ] shareable auth state 
 * [ ] username/email/phone for user 
