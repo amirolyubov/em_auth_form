@@ -1,9 +1,9 @@
 import React from "react";
-import { Div, Text, Input, Button } from "../../components/basic";
+import { Text, Input, Button } from "../../components/basic";
 
 function ForgotPassword() {
     return (
-        <Div>
+        <>
             <Input
                 width="100%"
                 label="username"
@@ -13,7 +13,7 @@ function ForgotPassword() {
             <Button mt="20px">
                 <Text>reset password</Text>
             </Button>
-        </Div>
+        </>
     );
 }
 

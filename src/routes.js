@@ -11,7 +11,7 @@ import {
 } from "./pages/auth";
 
 function Routes() {
-    const [isAuthentificated, setAuthentificated] = useState(false);
+    const [isAuthentificated] = useState(false);
     return (
         <RRDRoutes>
             <Route

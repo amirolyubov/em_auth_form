@@ -16,20 +16,34 @@ const BaseInput = styled.input`
     &:focus {
         border-bottom: 1px solid black;
     }
+    ${(props) =>
+        props.error &&
+        `
+            border-bottom: 1px solid #ea0000;
+        
+    `}
 `;
 
 const Input = (props) => {
     return (
         <Div {...props}>
             <Div display="flex">
-                <Text fontSize="10px" ml="10px">
-                    {props.label}
+                <Text
+                    color={props.error ? "#ea0000" : "inherit"}
+                    fontSize="10px"
+                    ml="10px"
+                >
+                    {props.error || props.label}
                 </Text>
             </Div>
             <BaseInput
+                onChange={props.onChange}
+                onBlur={props.onBlur}
+                value={props.value}
                 placeholder={props.placeholder}
                 type={props.type}
                 name={props.name}
+                error={props.error}
                 mt="5px"
             />
         </Div>

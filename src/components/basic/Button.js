@@ -1,7 +1,8 @@
+import React from "react";
 import styled from "@emotion/styled";
 import { color, flexbox, layout, space } from "styled-system";
 
-const Button = styled.button`
+const BaseButton = styled.button`
     ${color};
     ${layout};
     ${space};
@@ -21,5 +22,9 @@ const Button = styled.button`
         cursor: default;
     }
 `;
+
+const Button = (props) => {
+    return <BaseButton {...props}>{props.children}</BaseButton>;
+};
 
 export default Button;

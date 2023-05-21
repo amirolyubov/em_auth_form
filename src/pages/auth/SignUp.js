@@ -1,9 +1,9 @@
 import React from "react";
-import { Div, Text, Input, Button, Checkbox } from "../../components/basic";
+import { Text, Input, Button, Checkbox } from "../../components/basic";
 
 function SignUp() {
     return (
-        <Div>
+        <>
             <Input
                 width="100%"
                 label="username"
@@ -27,7 +27,7 @@ function SignUp() {
             <Button mt="20px">
                 <Text>sign up</Text>
             </Button>
-        </Div>
+        </>
     );
 }
 

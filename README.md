@@ -12,6 +12,7 @@
 * [ ] animations 
 * [ ] keybinds 
 * [x] input names for autocomplete 
+* [ ] request states
 * [ ] security request design 
 * [ ] responsive design 
 * [ ] user validation with regexp 

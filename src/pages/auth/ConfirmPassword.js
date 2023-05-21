@@ -1,9 +1,9 @@
 import React from "react";
-import { Div, Text, Input, Button, Checkbox } from "../../components/basic";
+import { Text, Input, Button } from "../../components/basic";
 
 function ConfirmPassword() {
     return (
-        <Div>
+        <>
             <Input
                 placeholder="create new password"
                 label="password"
@@ -20,7 +20,7 @@ function ConfirmPassword() {
             <Button mt="20px">
                 <Text>confirm new password</Text>
             </Button>
-        </Div>
+        </>
     );
 }
 

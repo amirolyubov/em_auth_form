@@ -1,9 +1,10 @@
 import styled from "@emotion/styled";
-import { layout, space, typography } from "styled-system";
+import { color, layout, space, typography } from "styled-system";
 
 const Text = styled.p`
     font-family: monospace;
     margin: 0;
+    ${color}
     ${space}
     ${layout}
     ${typography}
