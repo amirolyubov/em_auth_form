@@ -1,8 +1,7 @@
-import React from "react";
-import { Div } from "../../components/basic";
+import Auth from "./Auth";
+import SignIn from "./SignIn";
+import SignUp from "./SignUp";
+import ChangePassword from "./ChangePassword";
+import ForgotPassword from "./ForgotPassword";
 
-function Auth() {
-    return <Div>Auth</Div>;
-}
-
-export default Auth;
+export { Auth, SignIn, SignUp, ChangePassword, ForgotPassword };
