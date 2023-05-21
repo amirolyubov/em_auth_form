@@ -2,9 +2,9 @@
 
 ## pages
 * [x] sign in 
-* [ ] sign up 
-* [ ] forgot password 
-* [ ] change password 
+* [x] sign up 
+* [x] forgot password 
+* [x] change password 
 * [ ] 404 
 ## features
 * [x] base components 

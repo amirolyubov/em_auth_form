@@ -17,7 +17,7 @@ function SignIn() {
                 type="password"
                 mt="20px"
             />
-            <Button mt="20px" mb="7px">
+            <Button mt="20px" mb="10px">
                 <Text>sign in</Text>
             </Button>
             <Link to="/auth/resetpassword">

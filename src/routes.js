@@ -2,7 +2,13 @@ import React, { useState } from "react";
 import { Navigate, Routes as RRDRoutes, Route } from "react-router-dom";
 import App from "./App";
 import { Protected } from "./components";
-import { Auth, ResetPassword, SignIn, SignUp } from "./pages/auth";
+import {
+    Auth,
+    ConfirmPassword,
+    ResetPassword,
+    SignIn,
+    SignUp,
+} from "./pages/auth";
 
 function Routes() {
     const [isAuthentificated, setAuthentificated] = useState(false);
@@ -21,6 +27,7 @@ function Routes() {
                 <Route path="signin" element={<SignIn />} />
                 <Route path="signup" element={<SignUp />} />
                 <Route path="resetpassword" element={<ResetPassword />} />
+                <Route path="confirmpassword" element={<ConfirmPassword />} />
                 <Route path="*" element={<Navigate to="signin"></Navigate>} />
             </Route>
         </RRDRoutes>
