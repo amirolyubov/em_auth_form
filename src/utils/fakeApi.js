@@ -1,8 +1,8 @@
-function fakeRequest() {
+function fakeRequest(response, pwd) {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             resolve(true);
-        }, 1000);
+        }, 2000);
     });
 }
 

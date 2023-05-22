@@ -9,15 +9,16 @@
 ## features
 * [x] base components 
 * [x] error handling 
-* [ ] animations 
-* [ ] keybinds 
+* [x] animations 
+* [x] keybinds 
 * [x] input names for autocomplete 
-* [ ] request states
+* [x] request states
 * [ ] security request design 
 * [ ] responsive design 
 * [x] user validation with regexp 
-* [ ] token validation 
+* [x] token validation 
 * [ ] shareable auth state 
 * [x] username/email for user 
 * [ ] tooltips 
 * [x] protected routes
+* [ ] show/hide password

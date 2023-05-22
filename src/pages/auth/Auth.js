@@ -51,7 +51,7 @@ function Auth() {
                         <Text>signup</Text>
                     </FormTab>
                 </Div>
-                <Div p="20px 15px 30px">
+                <Div p="20px 15px 30px" position="relative">
                     <Outlet />
                 </Div>
             </Div>
