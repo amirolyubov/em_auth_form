@@ -8,16 +8,16 @@
 * [ ] 404 
 ## features
 * [x] base components 
-* [ ] error handling 
+* [x] error handling 
 * [ ] animations 
 * [ ] keybinds 
 * [x] input names for autocomplete 
 * [ ] request states
 * [ ] security request design 
 * [ ] responsive design 
-* [ ] user validation with regexp 
+* [x] user validation with regexp 
 * [ ] token validation 
 * [ ] shareable auth state 
-* [ ] username/email/phone for user 
+* [x] username/email for user 
 * [ ] tooltips 
 * [x] protected routes

@@ -51,4 +51,39 @@ function validateSignUp(values) {
     return errors;
 }
 
-export { validateSignIn, validateSignUp };
+function validateConfirmPassword(values) {
+    const errors = {};
+
+    if (!values.password) {
+        errors.password = "password is required";
+    } else if (values.password.length < 8) {
+        errors.password = "password should be at least 8 symbols";
+    }
+
+    if (!values.passwordConfirm) {
+        errors.passwordConfirm = "password confirmation should not be empty";
+    } else if (values.password !== values.passwordConfirm) {
+        errors.passwordConfirm = "passwords are not equal";
+    }
+
+    return errors;
+}
+
+function validateResetPassword(values) {
+    const errors = {};
+
+    if (!values.email) {
+        errors.email = "email is required";
+    } else if (!emailRegex.test(values.email)) {
+        errors.email = "email is not valid";
+    }
+
+    return errors;
+}
+
+export {
+    validateSignIn,
+    validateSignUp,
+    validateResetPassword,
+    validateConfirmPassword,
+};
