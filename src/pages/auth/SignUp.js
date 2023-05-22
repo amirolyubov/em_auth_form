@@ -2,6 +2,7 @@ import React from "react";
 import { Text, Input, Button, Checkbox } from "../../components/basic";
 import { Formik } from "formik";
 import { validateSignUp } from "../../utils/validation";
+import { fakeRequest } from "../../utils/fakeApi";
 
 function SignUp() {
     return (
@@ -18,10 +19,9 @@ function SignUp() {
                 return errors;
             }}
             onSubmit={(values, { setSubmitting }) => {
-                setTimeout(() => {
-                    alert(JSON.stringify(values, null, 2));
+                fakeRequest().then(() => {
                     setSubmitting(false);
-                }, 400);
+                });
             }}
         >
             {({
@@ -83,6 +83,7 @@ function SignUp() {
                         mt="20px"
                         mb="10px"
                         disabled={!isValid}
+                        isLoading={isSubmitting}
                     >
                         <Text>sign up</Text>
                     </Button>

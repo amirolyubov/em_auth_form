@@ -2,6 +2,7 @@ import React from "react";
 import { Text, Input, Button } from "../../components/basic";
 import { Formik } from "formik";
 import { validateResetPassword } from "../../utils/validation";
+import { fakeRequest } from "../../utils/fakeApi";
 
 function ForgotPassword() {
     return (
@@ -13,10 +14,9 @@ function ForgotPassword() {
                 return errors;
             }}
             onSubmit={(values, { setSubmitting }) => {
-                setTimeout(() => {
-                    alert(JSON.stringify(values, null, 2));
+                fakeRequest().then(() => {
                     setSubmitting(false);
-                }, 400);
+                });
             }}
         >
             {({
@@ -45,6 +45,7 @@ function ForgotPassword() {
                         mt="20px"
                         mb="10px"
                         disabled={!isValid}
+                        isLoading={isSubmitting}
                     >
                         <Text>reset password</Text>
                     </Button>

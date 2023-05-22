@@ -34,10 +34,20 @@ function Auth() {
         >
             <Div bg="white" width="300px" mt="10%">
                 <Div display="flex" justifyContent="space-between">
-                    <FormTab active={pathname === "/auth/signin"} to="signin">
+                    <FormTab
+                        active={
+                            pathname === "/auth/signin"
+                                ? 1
+                                : 0 /* this is for removing the warning from log, but the best way for it is using TS */
+                        }
+                        to="signin"
+                    >
                         <Text>signin</Text>
                     </FormTab>
-                    <FormTab active={pathname === "/auth/signup"} to="signup">
+                    <FormTab
+                        active={pathname === "/auth/signup" ? 1 : 0 /* same */}
+                        to="signup"
+                    >
                         <Text>signup</Text>
                     </FormTab>
                 </Div>

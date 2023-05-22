@@ -2,6 +2,7 @@ import React from "react";
 import { Text, Input, Button } from "../../components/basic";
 import { Formik } from "formik";
 import { validateConfirmPassword } from "../../utils/validation";
+import { fakeRequest } from "../../utils/fakeApi";
 
 function ConfirmPassword() {
     return (
@@ -16,10 +17,9 @@ function ConfirmPassword() {
                 return errors;
             }}
             onSubmit={(values, { setSubmitting }) => {
-                setTimeout(() => {
-                    alert(JSON.stringify(values, null, 2));
+                fakeRequest().then(() => {
                     setSubmitting(false);
-                }, 400);
+                });
             }}
         >
             {({
@@ -62,6 +62,7 @@ function ConfirmPassword() {
                         mt="20px"
                         mb="10px"
                         disabled={!isValid}
+                        isLoading={isSubmitting}
                     >
                         <Text>sign up</Text>
                     </Button>
