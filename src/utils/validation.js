@@ -13,6 +13,7 @@ function validateSignIn(values) {
     } else if (!emailRegex.test(values.email)) {
         errors.email = "email is not valid";
     }
+
     if (!values.password) {
         errors.password = "password is required";
     } else if (values.password.length < 8) {
@@ -22,4 +23,32 @@ function validateSignIn(values) {
     return errors;
 }
 
-export { validateSignIn };
+function validateSignUp(values) {
+    const errors = {};
+
+    if (!values.email) {
+        errors.email = "email is required";
+    } else if (!emailRegex.test(values.email)) {
+        errors.email = "email is not valid";
+    }
+
+    if (!values.password) {
+        errors.password = "password is required";
+    } else if (values.password.length < 8) {
+        errors.password = "password should be at least 8 symbols";
+    }
+
+    if (!values.passwordConfirm) {
+        errors.passwordConfirm = "password confirmation should not be empty";
+    } else if (values.password !== values.passwordConfirm) {
+        errors.passwordConfirm = "passwords are not equal";
+    }
+
+    if (!values.isAgree) {
+        errors.isAgree = "";
+    }
+
+    return errors;
+}
+
+export { validateSignIn, validateSignUp };

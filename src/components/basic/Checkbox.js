@@ -19,7 +19,12 @@ const Checkbox = (props) => (
     <>
         <label>
             <Div alignItems="center" display="flex" {...props}>
-                <BaseCheckbox />
+                <BaseCheckbox
+                    checked={props.checked}
+                    onChange={props.onChange}
+                    onBlur={props.onBlur}
+                    name={props.name}
+                />
                 <Text>{props.label}</Text>
             </Div>
         </label>
