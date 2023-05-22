@@ -1,5 +1,5 @@
 import React from "react";
-import { Global, css, keyframes } from "@emotion/react";
+import { Global, css } from "@emotion/react";
 
 function GlobalStyles() {
     return (

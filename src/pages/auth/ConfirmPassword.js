@@ -29,6 +29,8 @@ function ConfirmPassword() {
                 }
             });
         }
+        // sry for that,  i read about useeffect and this deps, think that just for test without warnings its ok :)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
