@@ -58,6 +58,7 @@ function SignUp() {
                             onChange={handleChange}
                             onBlur={handleBlur}
                             error={touched.email && errors.email}
+                            tooltip="multiply accounts with + are not supported"
                         />
                         <Input
                             placeholder="create new password"
@@ -69,6 +70,7 @@ function SignUp() {
                             onChange={handleChange}
                             onBlur={handleBlur}
                             error={touched.password && errors.password}
+                            tooltip="use minimum 1 number and 1 capital letter"
                         />
                         <Input
                             placeholder="confirm your password"

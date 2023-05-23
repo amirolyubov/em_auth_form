@@ -19,6 +19,6 @@
 * [x] token validation 
 * [ ] shareable auth state 
 * [x] username/email for user 
-* [ ] tooltips 
+* [x] tooltips 
 * [x] protected routes
 * [ ] show/hide password

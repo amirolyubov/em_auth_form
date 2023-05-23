@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { color, flexbox, layout, position, space } from "styled-system";
+import { border, color, flexbox, layout, position, space } from "styled-system";
 
 const Div = styled.div`
     ${color};
@@ -7,6 +7,7 @@ const Div = styled.div`
     ${layout};
     ${flexbox};
     ${space};
+    ${border};
 `;
 
 export default Div;

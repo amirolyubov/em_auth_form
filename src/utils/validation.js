@@ -1,5 +1,6 @@
 const emailRegex = /^[\w.-]+@[a-zA-Z_-]+?\.[a-zA-Z]{2,3}$/;
 const usernameRegex = /^@([A-Za-z0-9_]{1,15})$/;
+const passwordRegex = /^(?=.*\d)(?=.*[A-Z])[A-Za-z\d]+$/;
 
 function validateSignIn(values) {
     const errors = {};
@@ -18,6 +19,8 @@ function validateSignIn(values) {
         errors.password = "password is required";
     } else if (values.password.length < 8) {
         errors.password = "password should be at least 8 symbols";
+    } else if (!passwordRegex.test(values.password)) {
+        errors.password = "password does not match requirements";
     }
 
     return errors;
@@ -36,6 +39,8 @@ function validateSignUp(values) {
         errors.password = "password is required";
     } else if (values.password.length < 8) {
         errors.password = "password should be at least 8 symbols";
+    } else if (!passwordRegex.test(values.password)) {
+        errors.password = "password does not match requirements";
     }
 
     if (!values.passwordConfirm) {
@@ -58,6 +63,8 @@ function validateConfirmPassword(values) {
         errors.password = "password is required";
     } else if (values.password.length < 8) {
         errors.password = "password should be at least 8 symbols";
+    } else if (!passwordRegex.test(values.password)) {
+        errors.password = "password does not match requirements";
     }
 
     if (!values.passwordConfirm) {
