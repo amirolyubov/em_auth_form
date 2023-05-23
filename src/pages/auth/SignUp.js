@@ -70,7 +70,7 @@ function SignUp() {
                             onChange={handleChange}
                             onBlur={handleBlur}
                             error={touched.password && errors.password}
-                            tooltip="use minimum 1 number and 1 capital letter"
+                            tooltip="minimum 1 number and upper, from 8 in length"
                         />
                         <Input
                             placeholder="confirm your password"

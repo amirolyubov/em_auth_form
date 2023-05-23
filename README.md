@@ -21,4 +21,5 @@
 * [x] username/email for user 
 * [x] tooltips 
 * [x] protected routes
-* [ ] show/hide password
+* [x] show/hide password
+* [ ] pretty outline

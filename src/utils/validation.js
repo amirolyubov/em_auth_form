@@ -17,10 +17,6 @@ function validateSignIn(values) {
 
     if (!values.password) {
         errors.password = "password is required";
-    } else if (values.password.length < 8) {
-        errors.password = "password should be at least 8 symbols";
-    } else if (!passwordRegex.test(values.password)) {
-        errors.password = "password does not match requirements";
     }
 
     return errors;

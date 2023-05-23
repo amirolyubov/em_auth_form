@@ -3,13 +3,19 @@ import styled from "@emotion/styled";
 import { layout, space } from "styled-system";
 import Div from "./Div";
 import Text from "./Text";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const TooltipWrapper = styled(Div)`
     display: flex;
     justify-content: space-between;
     height: 12px;
     overflow: hidden;
+`;
+
+const InputWrapper = styled(Div)`
+    border-bottom: 1px solid #eaeaea;
+    justify-content: space-between;
+    display: flex;
 `;
 
 const AnimatedTextBlock = styled(Div)`
@@ -29,17 +35,42 @@ const BaseInput = styled.input`
     outline: 0;
     width: 100%;
     border: 0;
-    border-bottom: 1px solid #eaeaea;
     padding: 10px 5px 10px 10px;
-    &:focus {
-        border-bottom: 1px solid black;
-    }
     ${(props) =>
-        props.error &&
-        `
-            border-bottom: 1px solid #ea0000;
-        
-    `}
+        props.withShowButton
+            ? `
+                div:has(> &:focus) {
+                    border-bottom: 1px solid black;
+                }
+                ${
+                    props.error &&
+                    `
+                    div:has(> &) {
+                        border-bottom: 1px solid #ea0000;
+                    }
+                `
+                }
+            `
+            : `
+                border-bottom: 1px solid #eaeaea;
+                &:focus {
+                    border-bottom: 1px solid black;
+                }
+                ${
+                    props.error &&
+                    `
+                        border-bottom: 1px solid #ea0000;
+                    
+                `
+                }
+            `}
+`;
+
+const ShowPasswordButton = styled.button`
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    filter: grayscale(1);
 `;
 
 const TooltipIcon = styled(Div)`
@@ -54,13 +85,22 @@ const TooltipIcon = styled(Div)`
         color: white;
     }
 `;
-
+// note:
+// its possibly to make hovering effect on tooltip without js only on css
+// with ${Element}, or with :has, and if its make sense, ping me and i will rewrite it
 const Input = (props) => {
+    const [inputType, setInputType] = useState(props.type);
     const [isInputHovered, setInputHovered] = useState(false);
     const [isTooltipHovered, setTooltipActive] = useState(false);
+
+    useEffect(() => {
+        setInputType(props.type);
+    }, [props.type]);
+
     return (
         <Div
             {...props}
+            onBlur={undefined}
             onMouseLeave={() => setInputHovered(false)}
             onMouseEnter={() => setInputHovered(true)}
         >
@@ -93,7 +133,7 @@ const Input = (props) => {
                 )}
                 {props.tooltip && (isInputHovered || isTooltipHovered) && (
                     <TooltipIcon
-                        ml="10px"
+                        mr="8px"
                         onMouseLeave={() => setTooltipActive(false)}
                         onMouseEnter={() => setTooltipActive(true)}
                     >
@@ -107,15 +147,44 @@ const Input = (props) => {
                     </TooltipIcon>
                 )}
             </TooltipWrapper>
-            <BaseInput
-                onChange={props.onChange}
-                onBlur={props.onBlur}
-                value={props.value}
-                placeholder={props.placeholder}
-                type={props.type}
-                name={props.name}
-                mt="5px"
-            />
+            {props.type === "password" ? (
+                <InputWrapper>
+                    <BaseInput
+                        autoComplete="on"
+                        onChange={props.onChange}
+                        onBlur={props.onBlur}
+                        value={props.value}
+                        placeholder={props.placeholder}
+                        type={inputType}
+                        name={props.name}
+                        error={props.error}
+                        withShowButton={props.type === "password"}
+                        mt="5px"
+                    />
+                    <ShowPasswordButton
+                        type="button"
+                        onClick={() =>
+                            setInputType((type) =>
+                                type === "password" ? "text" : "password"
+                            )
+                        }
+                    >
+                        {inputType === "text" ? "🔓" : "🔒"}
+                    </ShowPasswordButton>
+                </InputWrapper>
+            ) : (
+                <BaseInput
+                    onChange={props.onChange}
+                    onBlur={props.onBlur}
+                    value={props.value}
+                    placeholder={props.placeholder}
+                    type={props.type}
+                    withShowButton={props.type === "password"}
+                    name={props.name}
+                    error={props.error}
+                    mt="5px"
+                />
+            )}
         </Div>
     );
 };
