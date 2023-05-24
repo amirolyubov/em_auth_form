@@ -5,6 +5,13 @@
 yarn install && yarn start
 `
 
+## data
+valid user:pass `test@test.com:Iwannabeyourdog1`
+valid token `1234`
+
+## security
+in Auth wrapper i'd wrote a fake request to get a Csrf token, and put it in hidden input in every form
+
 ## tasks
 ### pages
 * [x] sign in 
@@ -19,7 +26,8 @@ yarn install && yarn start
 * [x] keybinds 
 * [x] input names for autocomplete 
 * [x] request states
-* [ ] security request design 
+* [ ] security request design
+* [ ] fake requests 
 * [x] responsive design 
 * [x] user validation with regexp 
 * [x] token validation 
@@ -30,6 +38,7 @@ yarn install && yarn start
 * [ ] helper with data to test this app
 * [x] headers
 ### nice to do
+* [ ] add another errors from backend, such as 500
 * [ ] add signin/signup with google, fb and others
 * [ ] more friendful texts
 * [ ] less contrast ui colors

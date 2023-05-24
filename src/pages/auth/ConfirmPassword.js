@@ -3,10 +3,16 @@ import { Text, Input, Button, Form, Div } from "../../components/basic";
 import { Formik } from "formik";
 import { validateConfirmPassword } from "../../utils/validation";
 import { fakeRequest } from "../../utils/fakeApi";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import {
+    useNavigate,
+    useOutletContext,
+    useSearchParams,
+} from "react-router-dom";
 import { ErrorPopup, LoaderPopup, SuccessPopup } from "../../components";
+import { confirmPassword, validateToken } from "../../api";
 
 function ConfirmPassword() {
+    const [csrfToken] = useOutletContext();
     const [searchParams, setSearchParams] = useSearchParams();
     const [isSuccessfullyChangePassword, setSuccessfullyChangePassword] =
         useState(false);
@@ -20,8 +26,8 @@ function ConfirmPassword() {
         if (!token) {
             navigate("/auth");
         } else {
-            fakeRequest().then(() => {
-                if (token === "1234") {
+            validateToken(token).then((responce) => {
+                if (responce) {
                     setRequestingTokenValidation(false);
                     setSearchParams("");
                 } else {
@@ -39,6 +45,7 @@ function ConfirmPassword() {
                 initialValues={{
                     password: "",
                     passwordConfirm: "",
+                    csrfToken,
                 }}
                 validate={(values) => {
                     const errors = validateConfirmPassword(values);
@@ -46,7 +53,7 @@ function ConfirmPassword() {
                     return errors;
                 }}
                 onSubmit={(values, { setSubmitting }) => {
-                    fakeRequest().then(() => {
+                    confirmPassword(values).then(() => {
                         setSubmitting(false);
                         setSuccessfullyChangePassword(true);
                         setTimeout(() => navigate("/auth/signin"), 2500);
@@ -67,8 +74,15 @@ function ConfirmPassword() {
                         <Div>
                             <Text m="10px 0 0 10px">Create a new password</Text>
                             <Input
+                                type="hidden"
+                                name="csrfToken"
+                                value={values.csrfToken}
+                            />
+                            <Input
                                 placeholder="create new password"
                                 label="password"
+                                id="new-password"
+                                autoComplete="new-password"
                                 name="password"
                                 type="password"
                                 mt={["30px", "20px"]}

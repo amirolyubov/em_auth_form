@@ -9,11 +9,13 @@ import {
 } from "../../components/basic";
 import { Formik } from "formik";
 import { validateSignUp } from "../../utils/validation";
-import { fakeRequest } from "../../utils/fakeApi";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
 import { SuccessPopup } from "../../components";
+import { signUp } from "../../api";
 
 function SignUp() {
+    const [csrfToken] = useOutletContext();
+
     const navigate = useNavigate();
     const [isSuccessfullySignUp, setSuccessfullySignUp] = useState(false);
 
@@ -24,6 +26,7 @@ function SignUp() {
                     email: "",
                     password: "",
                     passwordConfirm: "",
+                    csrfToken,
                     isAgree: false,
                 }}
                 validate={(values) => {
@@ -31,17 +34,20 @@ function SignUp() {
 
                     return errors;
                 }}
-                onSubmit={(values, { setSubmitting }) => {
-                    fakeRequest().then(() => {
+                onSubmit={(values, { setSubmitting, setErrors }) => {
+                    signUp(values).then((responce) => {
+                        if (responce.error) {
+                            setErrors({ email: "email already in use" });
+                        } else {
+                            setSuccessfullySignUp(true);
+                            setTimeout(() => {
+                                alert(
+                                    "You have been redirected to page with signing in, with token in uri params. Its like you've got a message with link on your email"
+                                );
+                                navigate("/auth/signin?token=1234");
+                            }, 2500);
+                        }
                         setSubmitting(false);
-
-                        setSuccessfullySignUp(true);
-                        setTimeout(() => {
-                            alert(
-                                "You have been redirected to page with signing in, with token in uri params. Its like you've got a message with link on your email"
-                            );
-                            navigate("/auth/signin?token=1234");
-                        }, 2500);
                     });
                 }}
             >
@@ -61,6 +67,11 @@ function SignUp() {
                                 Creating a new account
                             </Text>
                             <Input
+                                type="hidden"
+                                name="csrfToken"
+                                value={values.csrfToken}
+                            />
+                            <Input
                                 width="100%"
                                 label="email"
                                 placeholder="enter your email"
@@ -75,6 +86,8 @@ function SignUp() {
                             <Input
                                 placeholder="create new password"
                                 label="password"
+                                id="new-password"
+                                autoComplete="new-password"
                                 name="password"
                                 type="password"
                                 mt={["30px", "20px"]}

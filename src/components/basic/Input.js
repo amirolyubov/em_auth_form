@@ -97,20 +97,31 @@ const Input = (props) => {
     return (
         <Div
             {...props}
+            id={undefined}
             onBlur={undefined}
             onMouseLeave={() => setInputHovered(false)}
             onMouseEnter={() => setInputHovered(true)}
         >
-            <TooltipWrapper height={["16px", "12px"]}>
-                {props.tooltip ? (
-                    <AnimatedTextBlock
-                        display="flex"
-                        flexDirection="column"
-                        isTopText={isTooltipHovered}
-                    >
-                        <Text fontSize="8px" ml="10px">
-                            {props.tooltip}
-                        </Text>
+            <label>
+                <TooltipWrapper height={["16px", "12px"]}>
+                    {props.tooltip ? (
+                        <AnimatedTextBlock
+                            display="flex"
+                            flexDirection="column"
+                            isTopText={isTooltipHovered}
+                        >
+                            <Text fontSize="8px" ml="10px">
+                                {props.tooltip}
+                            </Text>
+                            <Text
+                                color={props.error ? "#ea0000" : "inherit"}
+                                fontSize="10px"
+                                ml="10px"
+                            >
+                                {props.error || props.label}
+                            </Text>
+                        </AnimatedTextBlock>
+                    ) : (
                         <Text
                             color={props.error ? "#ea0000" : "inherit"}
                             fontSize="10px"
@@ -118,74 +129,69 @@ const Input = (props) => {
                         >
                             {props.error || props.label}
                         </Text>
-                    </AnimatedTextBlock>
-                ) : (
-                    <Text
-                        color={props.error ? "#ea0000" : "inherit"}
-                        fontSize="10px"
-                        ml="10px"
-                    >
-                        {props.error || props.label}
-                    </Text>
-                )}
-                {props.tooltip && (isInputHovered || isTooltipHovered) && (
-                    <TooltipIcon
-                        width={["16px", "12px"]}
-                        height={["16px", "12px"]}
-                        mr={["10px", "8px"]}
-                        onMouseLeave={() => setTooltipActive(false)}
-                        onMouseEnter={() => setTooltipActive(true)}
-                    >
-                        <Text
-                            lineHeight={["17px", "11px"]}
-                            fontSize={["14px", "8px"]}
-                            textAlign="center"
+                    )}
+                    {props.tooltip && (isInputHovered || isTooltipHovered) && (
+                        <TooltipIcon
+                            width={["16px", "12px"]}
+                            height={["16px", "12px"]}
+                            mr={["10px", "8px"]}
+                            onMouseLeave={() => setTooltipActive(false)}
+                            onMouseEnter={() => setTooltipActive(true)}
                         >
-                            i
-                        </Text>
-                    </TooltipIcon>
-                )}
-            </TooltipWrapper>
-            {props.type === "password" ? (
-                <InputWrapper>
+                            <Text
+                                lineHeight={["17px", "11px"]}
+                                fontSize={["14px", "8px"]}
+                                textAlign="center"
+                            >
+                                i
+                            </Text>
+                        </TooltipIcon>
+                    )}
+                </TooltipWrapper>
+                {props.type === "password" ? (
+                    <InputWrapper>
+                        <BaseInput
+                            autoComplete={props.autoComplete}
+                            id={props.id}
+                            onChange={props.onChange}
+                            onBlur={props.onBlur}
+                            value={props.value}
+                            placeholder={props.placeholder}
+                            type={inputType}
+                            name={props.name}
+                            error={props.error}
+                            withShowButton={props.type === "password"}
+                            mt="5px"
+                        />
+                        <ShowPasswordButton
+                            type="button"
+                            onClick={() =>
+                                setInputType((type) =>
+                                    type === "password" ? "text" : "password"
+                                )
+                            }
+                        >
+                            <Text fontSize={["20px", "13px"]}>
+                                {inputType === "text" ? "🔓" : "🔒"}
+                            </Text>
+                        </ShowPasswordButton>
+                    </InputWrapper>
+                ) : (
                     <BaseInput
-                        autoComplete="on"
+                        autoComplete={props.autoComplete}
+                        id={props.id}
                         onChange={props.onChange}
                         onBlur={props.onBlur}
                         value={props.value}
                         placeholder={props.placeholder}
-                        type={inputType}
+                        type={props.type}
+                        withShowButton={props.type === "password"}
                         name={props.name}
                         error={props.error}
-                        withShowButton={props.type === "password"}
                         mt="5px"
                     />
-                    <ShowPasswordButton
-                        type="button"
-                        onClick={() =>
-                            setInputType((type) =>
-                                type === "password" ? "text" : "password"
-                            )
-                        }
-                    >
-                        <Text fontSize={["20px", "13px"]}>
-                            {inputType === "text" ? "🔓" : "🔒"}
-                        </Text>
-                    </ShowPasswordButton>
-                </InputWrapper>
-            ) : (
-                <BaseInput
-                    onChange={props.onChange}
-                    onBlur={props.onBlur}
-                    value={props.value}
-                    placeholder={props.placeholder}
-                    type={props.type}
-                    withShowButton={props.type === "password"}
-                    name={props.name}
-                    error={props.error}
-                    mt="5px"
-                />
-            )}
+                )}
+            </label>
         </Div>
     );
 };

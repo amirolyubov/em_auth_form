@@ -2,25 +2,27 @@ import React, { useState } from "react";
 import { Text, Input, Button, Form, Div } from "../../components/basic";
 import { Formik } from "formik";
 import { validateResetPassword } from "../../utils/validation";
-import { fakeRequest } from "../../utils/fakeApi";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
 import { SuccessPopup } from "../../components";
+import { resetPassword } from "../../api";
 
 function ForgotPassword() {
+    const [csrfToken] = useOutletContext();
+
     const navigate = useNavigate();
     const [isSuccessfullyReset, setSuccessfullyReset] = useState(false);
 
     return (
         <>
             <Formik
-                initialValues={{ email: "" }}
+                initialValues={{ email: "", csrfToken }}
                 validate={(values) => {
                     const errors = validateResetPassword(values);
 
                     return errors;
                 }}
                 onSubmit={(values, { setSubmitting }) => {
-                    fakeRequest().then(() => {
+                    resetPassword(values).then(() => {
                         setSubmitting(false);
                         setSuccessfullyReset(true);
 
@@ -46,6 +48,11 @@ function ForgotPassword() {
                     <Form onSubmit={handleSubmit}>
                         <Div>
                             <Text m="10px 0 0 10px">Reset password</Text>
+                            <Input
+                                type="hidden"
+                                name="csrfToken"
+                                value={values.csrfToken}
+                            />
                             <Input
                                 width="100%"
                                 label="email"

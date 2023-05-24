@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Div, Text, Link } from "../../components/basic";
 import { Outlet, useLocation } from "react-router-dom";
 import styled from "@emotion/styled";
+import { getCsrf } from "../../api";
+import { LoaderPopup } from "../../components";
 
 const FormTab = styled(Link)`
     width: 50%;
     text-decoration: none;
     color: inherit;
-    background-color: grey;
+    background-color: #eaeaea;
     padding: 10px 15px;
     transition: 0.3s;
     transition-property: transform;
@@ -22,26 +24,35 @@ const FormTab = styled(Link)`
     `};
 `;
 
+const PopupContent = styled(Div)`
+    overflow: hidden;
+`;
+
 function Auth() {
     const { pathname } = useLocation();
+    const [csrfToken, updateCsrfToken] = useState(null);
 
-    return (
+    useEffect(() => {
+        getCsrf().then((data) => updateCsrfToken(data.token));
+    }, []);
+
+    return csrfToken ? (
         <Div
             display={["inherit", "flex"]}
             alignItems="flex-start"
             justifyContent="center"
             height="100%"
-            bg="black"
             position="relative"
         >
-            <Div
+            <PopupContent
                 bg="white"
+                borderRadius={["0", "10px"]}
+                border="1px solid #eaeaea"
                 width={["100%", "300px"]}
                 mt={["0", "10%"]}
                 height={["100%", "auto"]}
                 display={["flex", "block"]}
                 flexDirection="column"
-                justifyContent=""
             >
                 <Div display="flex" justifyContent="space-between">
                     <FormTab
@@ -78,10 +89,12 @@ function Auth() {
                     position="relative"
                     height={["100%", "auto"]}
                 >
-                    <Outlet />
+                    <Outlet context={[csrfToken]} />
                 </Div>
-            </Div>
+            </PopupContent>
         </Div>
+    ) : (
+        <LoaderPopup />
     );
 }
 

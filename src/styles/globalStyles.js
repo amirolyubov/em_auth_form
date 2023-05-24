@@ -10,6 +10,7 @@ function GlobalStyles() {
                 #root {
                     margin: 0;
                     height: 100%;
+                    background: #fafafa;
                 }
 
                 form {
