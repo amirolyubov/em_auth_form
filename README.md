@@ -1,12 +1,18 @@
 # auth form для evil martians
 
-## pages
+## start
+`
+yarn install && yarn start
+`
+
+## tasks
+### pages
 * [x] sign in 
 * [x] sign up 
 * [x] forgot password 
 * [x] change password 
-* [ ] 404 
-## features
+* [x] 404 
+### features
 * [x] base components 
 * [x] error handling 
 * [x] animations 
@@ -21,6 +27,9 @@
 * [x] tooltips 
 * [x] protected routes
 * [x] show/hide password
-* [ ] helper
+* [ ] helper with data to test this app
 * [x] headers
-## nice to do
+### nice to do
+* [ ] add signin/signup with google, fb and others
+* [ ] more friendful texts
+* [ ] less contrast ui colors
