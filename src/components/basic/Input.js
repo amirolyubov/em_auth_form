@@ -8,7 +8,6 @@ import { useEffect, useState } from "react";
 const TooltipWrapper = styled(Div)`
     display: flex;
     justify-content: space-between;
-    height: 12px;
     overflow: hidden;
 `;
 
@@ -24,7 +23,7 @@ const AnimatedTextBlock = styled(Div)`
     ${(props) =>
         props.isTopText &&
         `
-        transform: translateY(2px);
+        transform: translateY(6px);
     `}
 `;
 
@@ -75,8 +74,6 @@ const ShowPasswordButton = styled.button`
 
 const TooltipIcon = styled(Div)`
     border-radius: 100px;
-    width: 12px;
-    height: 12px;
     border: 1px solid #aaaaaa;
     color: #aaa;
 
@@ -104,7 +101,7 @@ const Input = (props) => {
             onMouseLeave={() => setInputHovered(false)}
             onMouseEnter={() => setInputHovered(true)}
         >
-            <TooltipWrapper>
+            <TooltipWrapper height={["16px", "12px"]}>
                 {props.tooltip ? (
                     <AnimatedTextBlock
                         display="flex"
@@ -133,13 +130,15 @@ const Input = (props) => {
                 )}
                 {props.tooltip && (isInputHovered || isTooltipHovered) && (
                     <TooltipIcon
-                        mr="8px"
+                        width={["16px", "12px"]}
+                        height={["16px", "12px"]}
+                        mr={["10px", "8px"]}
                         onMouseLeave={() => setTooltipActive(false)}
                         onMouseEnter={() => setTooltipActive(true)}
                     >
                         <Text
-                            lineHeight="11px"
-                            fontSize="8px"
+                            lineHeight={["17px", "11px"]}
+                            fontSize={["14px", "8px"]}
                             textAlign="center"
                         >
                             i
@@ -169,7 +168,9 @@ const Input = (props) => {
                             )
                         }
                     >
-                        {inputType === "text" ? "🔓" : "🔒"}
+                        <Text fontSize={["20px", "13px"]}>
+                            {inputType === "text" ? "🔓" : "🔒"}
+                        </Text>
                     </ShowPasswordButton>
                 </InputWrapper>
             ) : (

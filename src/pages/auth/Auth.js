@@ -11,6 +11,7 @@ const FormTab = styled(Link)`
     padding: 10px 15px;
     transition: 0.3s;
     transition-property: transform;
+    text-transform: uppercase;
     ${({ active }) =>
         active &&
         `
@@ -26,32 +27,57 @@ function Auth() {
 
     return (
         <Div
-            display="flex"
+            display={["inherit", "flex"]}
             alignItems="flex-start"
             justifyContent="center"
             height="100%"
             bg="black"
+            position="relative"
         >
-            <Div bg="white" width="300px" mt="10%">
+            <Div
+                bg="white"
+                width={["100%", "300px"]}
+                mt={["0", "10%"]}
+                height={["100%", "auto"]}
+                display={["flex", "block"]}
+                flexDirection="column"
+                justifyContent=""
+            >
                 <Div display="flex" justifyContent="space-between">
                     <FormTab
                         active={
                             pathname === "/auth/signin"
                                 ? 1
-                                : 0 /* this is for removing the warning from log, but the best way for it is using TS */
+                                : 0 /* this is for removing the warning from log, the best way for it is using TS */
                         }
                         to="signin"
                     >
-                        <Text>signin</Text>
+                        <Text
+                            lineHeight={["36px", "13px"]}
+                            fontSize={["20px", "13px"]}
+                            pl="10px"
+                        >
+                            login
+                        </Text>
                     </FormTab>
                     <FormTab
                         active={pathname === "/auth/signup" ? 1 : 0 /* same */}
                         to="signup"
                     >
-                        <Text>signup</Text>
+                        <Text
+                            lineHeight={["36px", "13px"]}
+                            fontSize={["20px", "13px"]}
+                            pl="10px"
+                        >
+                            register
+                        </Text>
                     </FormTab>
                 </Div>
-                <Div p="20px 15px 30px" position="relative">
+                <Div
+                    p="20px 15px 30px"
+                    position="relative"
+                    height={["100%", "auto"]}
+                >
                     <Outlet />
                 </Div>
             </Div>

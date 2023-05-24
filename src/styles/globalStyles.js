@@ -12,6 +12,10 @@ function GlobalStyles() {
                     height: 100%;
                 }
 
+                form {
+                    height: 100%;
+                }
+
                 * {
                     box-sizing: border-box;
                     user-select: none;

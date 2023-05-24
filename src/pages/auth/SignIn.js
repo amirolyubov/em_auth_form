@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Input, Text, Link } from "../../components/basic";
+import { Button, Input, Text, Link, Div, Form } from "../../components/basic";
 import { Formik } from "formik";
 import { validateSignIn } from "../../utils/validation";
 import { fakeRequest } from "../../utils/fakeApi";
@@ -60,41 +60,47 @@ function SignIn() {
                     isSubmitting,
                     isValid,
                 }) => (
-                    <form onSubmit={handleSubmit}>
-                        <Input
-                            width="100%"
-                            label="username"
-                            placeholder="email or @user"
-                            name="email"
-                            value={values.email}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            error={touched.email && errors.email}
-                        />
-                        <Input
-                            placeholder="enter password"
-                            label="password"
-                            name="password"
-                            type="password"
-                            mt="20px"
-                            value={values.password}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            error={touched.password && errors.password}
-                        />
-                        <Button
-                            type="submit"
-                            mt="20px"
-                            mb="10px"
-                            disabled={!isValid}
-                            isLoading={isSubmitting}
-                        >
-                            <Text>sign in</Text>
-                        </Button>
-                        <Link to="/auth/resetpassword">
-                            <Text>Forgot your password?</Text>
-                        </Link>
-                    </form>
+                    <Form onSubmit={handleSubmit}>
+                        <Div>
+                            <Text m="10px 0 0 10px">Login to your account</Text>
+                            <Input
+                                width="100%"
+                                label="user"
+                                placeholder="email or @username"
+                                mt={["30px", "20px"]}
+                                name="email"
+                                value={values.email}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                error={touched.email && errors.email}
+                            />
+                            <Input
+                                placeholder="enter password"
+                                label="password"
+                                name="password"
+                                type="password"
+                                mt={["30px", "20px"]}
+                                value={values.password}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                error={touched.password && errors.password}
+                            />
+                        </Div>
+                        <Div>
+                            <Button
+                                type="submit"
+                                mt="30px"
+                                mb="10px"
+                                disabled={!isValid}
+                                isLoading={isSubmitting}
+                            >
+                                <Text>sign in</Text>
+                            </Button>
+                            <Link to="/auth/resetpassword">
+                                <Text>Forgot your password?</Text>
+                            </Link>
+                        </Div>
+                    </Form>
                 )}
             </Formik>
             {isSuccessfullySignin && <SuccessPopup />}

@@ -14,12 +14,13 @@
 * [x] input names for autocomplete 
 * [x] request states
 * [ ] security request design 
-* [ ] responsive design 
+* [x] responsive design 
 * [x] user validation with regexp 
 * [x] token validation 
-* [ ] shareable auth state 
 * [x] username/email for user 
 * [x] tooltips 
 * [x] protected routes
 * [x] show/hide password
-* [ ] pretty outline
+* [ ] helper
+* [x] headers
+## nice to do

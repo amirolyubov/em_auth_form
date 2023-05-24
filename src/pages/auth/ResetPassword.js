@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Text, Input, Button } from "../../components/basic";
+import { Text, Input, Button, Form, Div } from "../../components/basic";
 import { Formik } from "formik";
 import { validateResetPassword } from "../../utils/validation";
 import { fakeRequest } from "../../utils/fakeApi";
@@ -43,27 +43,31 @@ function ForgotPassword() {
                     isSubmitting,
                     isValid,
                 }) => (
-                    <form onSubmit={handleSubmit}>
-                        <Input
-                            width="100%"
-                            label="email"
-                            placeholder="enter your email"
-                            name="email"
-                            value={values.email}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            error={touched.email && errors.email}
-                        />
+                    <Form onSubmit={handleSubmit}>
+                        <Div>
+                            <Text m="10px 0 0 10px">Reset password</Text>
+                            <Input
+                                width="100%"
+                                label="email"
+                                placeholder="enter your email"
+                                name="email"
+                                mt={["30px", "20px"]}
+                                value={values.email}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                error={touched.email && errors.email}
+                            />
+                        </Div>
                         <Button
                             type="submit"
-                            mt="20px"
+                            mt="30px"
                             mb="10px"
                             disabled={!isValid}
                             isLoading={isSubmitting}
                         >
                             <Text>reset password</Text>
                         </Button>
-                    </form>
+                    </Form>
                 )}
             </Formik>
             {isSuccessfullyReset && <SuccessPopup />}
