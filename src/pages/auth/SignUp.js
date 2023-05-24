@@ -101,6 +101,11 @@ function SignUp() {
                                 placeholder="confirm your password"
                                 label="confirm password"
                                 name="passwordConfirm"
+                                isConfirmed={
+                                    touched.password &&
+                                    !errors.password &&
+                                    !errors.passwordConfirm
+                                }
                                 type="password"
                                 mt={["30px", "20px"]}
                                 value={values.passwordConfirm}

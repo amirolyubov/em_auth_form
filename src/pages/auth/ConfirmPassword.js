@@ -96,6 +96,11 @@ function ConfirmPassword() {
                                 label="confirm password"
                                 name="passwordConfirm"
                                 type="password"
+                                isConfirmed={
+                                    touched.password &&
+                                    !errors.password &&
+                                    !errors.passwordConfirm
+                                }
                                 mt={["30px", "20px"]}
                                 value={values.passwordConfirm}
                                 onChange={handleChange}

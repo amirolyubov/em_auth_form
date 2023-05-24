@@ -163,18 +163,25 @@ const Input = (props) => {
                             withShowButton={props.type === "password"}
                             mt="5px"
                         />
-                        <ShowPasswordButton
-                            type="button"
-                            onClick={() =>
-                                setInputType((type) =>
-                                    type === "password" ? "text" : "password"
-                                )
-                            }
-                        >
-                            <Text fontSize={["20px", "13px"]}>
-                                {inputType === "text" ? "🔓" : "🔒"}
-                            </Text>
-                        </ShowPasswordButton>
+                        <Div display="flex" alignItems="center">
+                            {props.isConfirmed && (
+                                <Text fontSize={["16px", "11px"]}>✔️</Text>
+                            )}
+                            <ShowPasswordButton
+                                type="button"
+                                onClick={() =>
+                                    setInputType((type) =>
+                                        type === "password"
+                                            ? "text"
+                                            : "password"
+                                    )
+                                }
+                            >
+                                <Text fontSize={["20px", "13px"]}>
+                                    {inputType === "text" ? "🔓" : "🔒"}
+                                </Text>
+                            </ShowPasswordButton>
+                        </Div>
                     </InputWrapper>
                 ) : (
                     <BaseInput
