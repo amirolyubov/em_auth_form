@@ -6,7 +6,7 @@ yarn install && yarn start
 `
 
 ## data
-valid user:pass `test@test.com:Iwannabeyourdog1`
+valid user:pass `test@test.com:Iwannabeyourdog1` or `@test:Iwannabeyourdog1` 
 valid token `1234`
 
 ## security
@@ -26,8 +26,8 @@ in Auth wrapper i'd wrote a fake request to get a Csrf token, and put it in hidd
 * [x] keybinds 
 * [x] input names for autocomplete 
 * [x] request states
-* [ ] security request design
-* [ ] fake requests 
+* [x] security request design
+* [x] fake requests 
 * [x] responsive design 
 * [x] user validation with regexp 
 * [x] token validation 
@@ -41,4 +41,4 @@ in Auth wrapper i'd wrote a fake request to get a Csrf token, and put it in hidd
 * [ ] add another errors from backend, such as 500
 * [ ] add signin/signup with google, fb and others
 * [ ] more friendful texts
-* [ ] less contrast ui colors
+* [x] less contrast ui colors

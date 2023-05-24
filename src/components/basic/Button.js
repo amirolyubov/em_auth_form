@@ -19,7 +19,7 @@ const BaseButton = styled.button`
     padding: 10px;
     text-transform: uppercase;
     cursor: pointer;
-    background-color: blue;
+    background-color: #4040ff;
     color: white;
     border: 0;
     transition: 0.2s;
@@ -40,15 +40,15 @@ const Button = (props) => {
                     ? css`
                           background: linear-gradient(
                               90deg,
-                              blue 0%,
+                              #4040ff 0%,
                               #6666ff 70%,
                               #6666ff 80%,
-                              blue 100%
+                              #4040ff 100%
                           );
                           background-color: blue;
                           background-clip: border-box;
                           background-size: 200% auto;
-                          animation: ${bgTranspose} 1s linear infinite;
+                          animation: ${bgTranspose} 0.6s linear infinite;
                           cursor: default;
                       `
                     : undefined

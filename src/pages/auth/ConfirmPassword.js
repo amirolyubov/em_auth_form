@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Text, Input, Button, Form, Div } from "../../components/basic";
 import { Formik } from "formik";
 import { validateConfirmPassword } from "../../utils/validation";
-import { fakeRequest } from "../../utils/fakeApi";
 import {
     useNavigate,
     useOutletContext,
