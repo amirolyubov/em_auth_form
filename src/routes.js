@@ -9,6 +9,7 @@ import {
     SignIn,
     SignUp,
 } from "./pages/auth";
+import { Page404 } from "./pages";
 
 function Routes() {
     const [isAuthentificated] = useState(false);
@@ -30,6 +31,7 @@ function Routes() {
                 <Route path="confirmpassword" element={<ConfirmPassword />} />
                 <Route path="*" element={<Navigate to="signin"></Navigate>} />
             </Route>
+            <Route path="*" element={<Page404 />} />
         </RRDRoutes>
     );
 }
