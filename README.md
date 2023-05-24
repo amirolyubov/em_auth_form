@@ -8,6 +8,7 @@ yarn install && yarn start
 ## data
 valid user:pass `test@test.com:Iwannabeyourdog1` or `@test:Iwannabeyourdog1` 
 valid token `1234`
+valid csrf `123`
 
 ## security
 in Auth wrapper i'd wrote a fake request to get a Csrf token, and put it in hidden input in every form
