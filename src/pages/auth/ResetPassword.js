@@ -8,9 +8,22 @@ import { resetPassword } from "../../api";
 
 function ForgotPassword() {
     const [csrfToken] = useOutletContext();
-
     const navigate = useNavigate();
     const [isSuccessfullyReset, setSuccessfullyReset] = useState(false);
+
+    function handleSubmit(values, { setSubmitting }) {
+        resetPassword(values).then(() => {
+            setSubmitting(false);
+            setSuccessfullyReset(true);
+
+            setTimeout(() => {
+                alert(
+                    "You have been redirected to page with creating new password, with token in uri params. Its like you've got a message with link on your email"
+                );
+                navigate("/auth/confirmpassword?token=1234");
+            }, 2000);
+        });
+    }
 
     return (
         <>
@@ -21,19 +34,7 @@ function ForgotPassword() {
 
                     return errors;
                 }}
-                onSubmit={(values, { setSubmitting }) => {
-                    resetPassword(values).then(() => {
-                        setSubmitting(false);
-                        setSuccessfullyReset(true);
-
-                        setTimeout(() => {
-                            alert(
-                                "You have been redirected to page with creating new password, with token in uri params. Its like you've got a message with link on your email"
-                            );
-                            navigate("/auth/confirmpassword?token=1234");
-                        }, 2000);
-                    });
-                }}
+                onSubmit={handleSubmit}
             >
                 {({
                     values,

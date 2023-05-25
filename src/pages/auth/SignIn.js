@@ -9,10 +9,12 @@ import {
     useOutletContext,
     useSearchParams,
 } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setAuthentificated } from "../../features/auth";
 
 function SignIn(props) {
+    const dispatch = useDispatch();
     const [csrfToken] = useOutletContext();
-
     const navigate = useNavigate();
     const [searchParams, setSearchParams] = useSearchParams();
     const [isSuccessfullySignin, setSuccessfullySignin] = useState(false);
@@ -37,6 +39,26 @@ function SignIn(props) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
+    function handleSubmit(values, { setSubmitting, setErrors }) {
+        signIn(values).then((responce) => {
+            if (responce.error) {
+                setErrors({
+                    password: "incorrect email or password",
+                    email: "incorrect email or password",
+                });
+            } else if (responce) {
+                setSuccessfullySignin(true);
+                setTimeout(() => {
+                    dispatch(setAuthentificated(true));
+                    navigate("/");
+                }, 2500);
+            } else {
+                // handle another backend errors here
+            }
+            setSubmitting(false);
+        });
+    }
+
     return (
         <>
             <Formik
@@ -50,24 +72,7 @@ function SignIn(props) {
 
                     return errors;
                 }}
-                onSubmit={(values, { setSubmitting, setErrors }) => {
-                    signIn(values).then((responce) => {
-                        if (responce.error) {
-                            setErrors({
-                                password: "incorrect email or password",
-                                email: "incorrect email or password",
-                            });
-                        } else if (responce) {
-                            setSuccessfullySignin(true);
-                            setTimeout(() => {
-                                navigate("/");
-                            }, 2500);
-                        } else {
-                            // handle another backend errors here
-                        }
-                        setSubmitting(false);
-                    });
-                }}
+                onSubmit={handleSubmit}
             >
                 {({
                     values,

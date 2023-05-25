@@ -38,6 +38,14 @@ function ConfirmPassword() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
+    function handleSubmit(values, { setSubmitting }) {
+        confirmPassword(values).then(() => {
+            setSubmitting(false);
+            setSuccessfullyChangePassword(true);
+            setTimeout(() => navigate("/auth/signin"), 2500);
+        });
+    }
+
     return (
         <>
             <Formik
@@ -51,13 +59,7 @@ function ConfirmPassword() {
 
                     return errors;
                 }}
-                onSubmit={(values, { setSubmitting }) => {
-                    confirmPassword(values).then(() => {
-                        setSubmitting(false);
-                        setSuccessfullyChangePassword(true);
-                        setTimeout(() => navigate("/auth/signin"), 2500);
-                    });
-                }}
+                onSubmit={handleSubmit}
             >
                 {({
                     values,

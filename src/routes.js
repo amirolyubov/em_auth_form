@@ -1,7 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import { Navigate, Routes as RRDRoutes, Route } from "react-router-dom";
-import App from "./App";
-import { Protected } from "./components";
 import {
     Auth,
     ConfirmPassword,
@@ -9,10 +7,28 @@ import {
     SignIn,
     SignUp,
 } from "./pages/auth";
-import { Page404 } from "./pages";
+import { App, Page404 } from "./pages";
+import { useSelector } from "react-redux";
+
+function Protected({ isAuthentificated, children }) {
+    if (!isAuthentificated) {
+        return <Navigate to="/auth" replace />;
+    }
+    return children;
+}
+
+function OnlyUnauthorized({ isAuthentificated, children }) {
+    if (!isAuthentificated) {
+        return children;
+    }
+    return <Navigate to="/" replace />;
+}
 
 function Routes() {
-    const [isAuthentificated] = useState(false);
+    const isAuthentificated = useSelector(
+        (state) => state.auth.isAuthentificated
+    );
+
     return (
         <RRDRoutes>
             <Route
@@ -23,7 +39,14 @@ function Routes() {
                     </Protected>
                 }
             />
-            <Route path="/auth" element={<Auth />}>
+            <Route
+                path="/auth"
+                element={
+                    <OnlyUnauthorized isAuthentificated={isAuthentificated}>
+                        <Auth />
+                    </OnlyUnauthorized>
+                }
+            >
                 <Route index element={<Navigate to="signin"></Navigate>} />
                 <Route path="signin" element={<SignIn />} />
                 <Route path="signup" element={<SignUp />} />

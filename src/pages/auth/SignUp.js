@@ -15,9 +15,25 @@ import { signUp } from "../../api";
 
 function SignUp() {
     const [csrfToken] = useOutletContext();
-
     const navigate = useNavigate();
     const [isSuccessfullySignUp, setSuccessfullySignUp] = useState(false);
+
+    function handleSubmit(values, { setSubmitting, setErrors }) {
+        signUp(values).then((responce) => {
+            if (responce.error) {
+                setErrors({ email: "email already in use" });
+            } else {
+                setSuccessfullySignUp(true);
+                setTimeout(() => {
+                    alert(
+                        "You have been redirected to page with signing in, with token in uri params. Its like you've got a message with link on your email"
+                    );
+                    navigate("/auth/signin?token=1234");
+                }, 2500);
+            }
+            setSubmitting(false);
+        });
+    }
 
     return (
         <>
@@ -34,22 +50,7 @@ function SignUp() {
 
                     return errors;
                 }}
-                onSubmit={(values, { setSubmitting, setErrors }) => {
-                    signUp(values).then((responce) => {
-                        if (responce.error) {
-                            setErrors({ email: "email already in use" });
-                        } else {
-                            setSuccessfullySignUp(true);
-                            setTimeout(() => {
-                                alert(
-                                    "You have been redirected to page with signing in, with token in uri params. Its like you've got a message with link on your email"
-                                );
-                                navigate("/auth/signin?token=1234");
-                            }, 2500);
-                        }
-                        setSubmitting(false);
-                    });
-                }}
+                onSubmit={handleSubmit}
             >
                 {({
                     values,

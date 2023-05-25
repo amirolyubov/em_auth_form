@@ -4,7 +4,6 @@ import { layout, space } from "styled-system";
 import Div from "./Div";
 import Text from "./Text";
 import { useEffect, useState } from "react";
-import { css } from "@emotion/react";
 
 const TooltipWrapper = styled(Div)`
     display: flex;
