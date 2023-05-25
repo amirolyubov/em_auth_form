@@ -38,7 +38,7 @@ in Auth wrapper i'd wrote a fake request to get a Csrf token, and put it in hidd
 * [x] show/hide password
 * [x] helper with data to test this app
 * [x] headers
-* [ ] deploy to gh-pages
+* [x] deploy to gh-pages
 ### nice to do
 * [ ] add another errors from backend, such as 500 or CSRF
 * [ ] add signin/signup with google, fb and others

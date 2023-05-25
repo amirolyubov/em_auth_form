@@ -54,8 +54,8 @@ function SignIn(props) {
                     signIn(values).then((responce) => {
                         if (responce.error) {
                             setErrors({
-                                password: "incorrect password or password",
-                                email: "incorrect password or password",
+                                password: "incorrect email or password",
+                                email: "incorrect email or password",
                             });
                         } else if (responce) {
                             setSuccessfullySignin(true);

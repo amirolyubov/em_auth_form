@@ -101,6 +101,7 @@ function SignUp() {
                                 placeholder="confirm your password"
                                 label="confirm password"
                                 name="passwordConfirm"
+                                autoComplete="new-password"
                                 isConfirmed={
                                     touched.password &&
                                     !errors.password &&

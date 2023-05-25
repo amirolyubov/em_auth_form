@@ -4,6 +4,7 @@ import { layout, space } from "styled-system";
 import Div from "./Div";
 import Text from "./Text";
 import { useEffect, useState } from "react";
+import { css } from "@emotion/react";
 
 const TooltipWrapper = styled(Div)`
     display: flex;
@@ -23,7 +24,7 @@ const AnimatedTextBlock = styled(Div)`
     ${(props) =>
         props.isTopText &&
         `
-        transform: translateY(6px);
+        transform: translateY(3px);
     `}
 `;
 
@@ -109,14 +110,19 @@ const Input = (props) => {
                             display="flex"
                             flexDirection="column"
                             isTopText={isTooltipHovered}
+                            device={["mobile", "desktop"]}
                         >
-                            <Text fontSize="8px" ml="10px">
+                            <Text
+                                fontSize={["9px", "8px"]}
+                                ml="10px"
+                                mb={["1px", "0"]}
+                            >
                                 {props.tooltip}
                             </Text>
                             <Text
                                 color={props.error ? "#ea0000" : "inherit"}
                                 fontSize="10px"
-                                ml="10px"
+                                ml={["12px", "10px"]}
                             >
                                 {props.error || props.label}
                             </Text>
